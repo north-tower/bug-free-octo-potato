@@ -1,9 +1,46 @@
-import { ArrowRight, Check, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, Check, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
-const HeroSection = () => {
+type HeroData = {
+  eyebrow?: string | null
+  headline?: string | null
+  headlineAccent?: string | null
+  body?: string | null
+  primaryCtaLabel?: string | null
+  primaryCtaHref?: string | null
+  secondaryCtaLabel?: string | null
+  secondaryCtaHref?: string | null
+  highlights?: (string | null)[] | null
+  stats?: {value?: string | null; label?: string | null; _key: string}[] | null
+  statsDisclaimer?: string | null
+  previewCaption?: string | null
+}
+
+function renderHeadline(headline?: string | null, accent?: string | null) {
+  if (!headline) return null
+  if (!accent || !headline.includes(accent)) {
+    return headline
+  }
+
+  const [before, ...rest] = headline.split(accent)
+  const after = rest.join(accent)
+
   return (
-    <section id="home" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+    <>
+      {before}
+      <span className="text-primary-foreground/90 underline decoration-white/35 underline-offset-8">
+        {accent}
+      </span>
+      {after}
+    </>
+  )
+}
+
+export default function HeroSection({hero}: {hero?: HeroData | null}) {
+  if (!hero) return null
+
+  return (
+    <section id="home" className="relative overflow-hidden" style={{background: 'var(--gradient-hero)'}}>
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-20 -left-24 h-80 w-80 rounded-full bg-white/15 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
@@ -11,75 +48,67 @@ const HeroSection = () => {
 
       <div className="container relative grid items-center gap-12 py-20 md:grid-cols-2 md:py-28">
         <div className="text-left">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-primary-foreground ring-1 ring-white/15">
-            <Sparkles className="h-4 w-4" />
-            Website Loom • Fast, modern websites for Kenya
-          </div>
+          {hero.eyebrow ? (
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-primary-foreground ring-1 ring-white/15">
+              <Sparkles className="h-4 w-4" />
+              {hero.eyebrow}
+            </div>
+          ) : null}
 
           <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
-            Websites that look premium and{" "}
-            <span className="text-primary-foreground/90 underline decoration-white/35 underline-offset-8">
-              convert
-            </span>
-            .
+            {renderHeadline(hero.headline, hero.headlineAccent)}
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
-            Website Loom builds custom e-commerce stores, lead-generating business sites, and organizational
-            websites for schools, hospitals, NGOs, and growing teams across Kenya — fast, beautiful, and built
-            to get results.
-          </p>
+          {hero.body ? (
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
+              {hero.body}
+            </p>
+          ) : null}
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-background px-6 font-bold text-primary shadow-[var(--shadow-button)] transition-colors hover:bg-background/90"
-            >
-              Get a FREE Quote <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="#portfolio"
-              className="inline-flex h-12 items-center justify-center rounded-lg bg-white/10 px-6 font-semibold text-primary-foreground ring-1 ring-white/20 transition hover:bg-white/15"
-            >
-              View Portfolio
-            </a>
+            {hero.primaryCtaLabel && hero.primaryCtaHref ? (
+              <Link
+                href={hero.primaryCtaHref}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-background px-6 font-bold text-primary shadow-[var(--shadow-button)] transition-colors hover:bg-background/90"
+              >
+                {hero.primaryCtaLabel} <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : null}
+            {hero.secondaryCtaLabel && hero.secondaryCtaHref ? (
+              <a
+                href={hero.secondaryCtaHref}
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-white/10 px-6 font-semibold text-primary-foreground ring-1 ring-white/20 transition hover:bg-white/15"
+              >
+                {hero.secondaryCtaLabel}
+              </a>
+            ) : null}
           </div>
 
-          <ul className="mt-8 grid gap-2 text-sm text-primary-foreground/85 sm:grid-cols-2">
-            <li className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0" />
-              Mobile-first + SEO-ready
-            </li>
-            <li className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0" />
-              Fast load times (Core Web Vitals)
-            </li>
-            <li className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0" />
-              WhatsApp + forms + analytics
-            </li>
-            <li className="flex items-start gap-2">
-              <Check className="mt-0.5 h-4 w-4 shrink-0" />
-              Launch in days, not months
-            </li>
-          </ul>
+          {hero.highlights?.length ? (
+            <ul className="mt-8 grid gap-2 text-sm text-primary-foreground/85 sm:grid-cols-2">
+              {hero.highlights.filter(Boolean).map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
 
-          <div className="mt-10 grid grid-cols-3 gap-4 rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
-            <div>
-              <div className="text-2xl font-extrabold text-primary-foreground">2–4 wks</div>
-              <div className="text-xs text-primary-foreground/75">Typical launch</div>
+          {hero.stats?.length ? (
+            <div className="mt-10 grid grid-cols-3 gap-4 rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
+              {hero.stats.map((stat) => (
+                <div key={stat._key}>
+                  <div className="text-2xl font-extrabold text-primary-foreground">{stat.value}</div>
+                  <div className="text-xs text-primary-foreground/75">{stat.label}</div>
+                </div>
+              ))}
             </div>
-            <div>
-              <div className="text-2xl font-extrabold text-primary-foreground">+30%</div>
-              <div className="text-xs text-primary-foreground/75">Avg. conversion lift*</div>
-            </div>
-            <div>
-              <div className="text-2xl font-extrabold text-primary-foreground">24/7</div>
-              <div className="text-xs text-primary-foreground/75">Monitoring options</div>
-            </div>
-          </div>
+          ) : null}
 
-          <p className="mt-3 text-xs text-primary-foreground/65">*Varies by industry and offer.</p>
+          {hero.statsDisclaimer ? (
+            <p className="mt-3 text-xs text-primary-foreground/65">{hero.statsDisclaimer}</p>
+          ) : null}
         </div>
 
         <div className="relative">
@@ -130,13 +159,11 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="mt-4 text-center text-xs text-primary-foreground/70">
-            Modern UI, responsive layout, and clean components.
-          </div>
+          {hero.previewCaption ? (
+            <div className="mt-4 text-center text-xs text-primary-foreground/70">{hero.previewCaption}</div>
+          ) : null}
         </div>
       </div>
     </section>
-  );
-};
-
-export default HeroSection;
+  )
+}

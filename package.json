@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:home": "sanity exec scripts/seedHomeContent.ts --with-user-token"
   },
   "dependencies": {
     "@sanity/icons": "^5.2.0",
