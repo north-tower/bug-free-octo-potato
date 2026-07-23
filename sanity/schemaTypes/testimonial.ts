@@ -1,11 +1,11 @@
-import { CommentIcon } from '@sanity/icons'
+import { icons } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonial',
   type: 'document',
-  icon: CommentIcon,
+  icon: icons.comment,
   fields: [
     defineField({
       name: 'name',

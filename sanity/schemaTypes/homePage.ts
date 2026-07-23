@@ -1,11 +1,11 @@
-import { HomeIcon } from '@sanity/icons'
+import { icons } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const homePage = defineType({
   name: 'homePage',
   title: 'Home Page',
   type: 'document',
-  icon: HomeIcon,
+  icon: icons.home,
   fields: [
     defineField({
       name: 'title',

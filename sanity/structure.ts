@@ -1,10 +1,4 @@
-import {
-  CommentIcon,
-  DocumentIcon,
-  HomeIcon,
-  ProjectsIcon,
-  TagIcon,
-} from '@sanity/icons'
+import { icons } from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
 
 export const structure: StructureResolver = (S) =>
@@ -13,32 +7,32 @@ export const structure: StructureResolver = (S) =>
     .items([
       S.listItem()
         .title('Home Page')
-        .icon(HomeIcon)
+        .icon(icons.home)
         .child(S.document().schemaType('homePage').documentId('singleton-homePage')),
 
       S.divider(),
 
       S.listItem()
         .title('Services')
-        .icon(TagIcon)
+        .icon(icons.tag)
         .schemaType('service')
         .child(S.documentTypeList('service').title('Services')),
 
       S.listItem()
         .title('Projects')
-        .icon(ProjectsIcon)
+        .icon(icons.projects)
         .schemaType('project')
         .child(S.documentTypeList('project').title('Projects')),
 
       S.listItem()
         .title('Case Studies')
-        .icon(DocumentIcon)
+        .icon(icons.document)
         .schemaType('caseStudy')
         .child(S.documentTypeList('caseStudy').title('Case Studies')),
 
       S.listItem()
         .title('Testimonials')
-        .icon(CommentIcon)
+        .icon(icons.comment)
         .schemaType('testimonial')
         .child(S.documentTypeList('testimonial').title('Testimonials')),
     ])

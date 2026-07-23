@@ -1,11 +1,11 @@
-import { DocumentIcon } from '@sanity/icons'
+import { icons } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const caseStudy = defineType({
   name: 'caseStudy',
   title: 'Case Study',
   type: 'document',
-  icon: DocumentIcon,
+  icon: icons.document,
   fields: [
     defineField({
       name: 'title',

@@ -1,11 +1,11 @@
-import { TagIcon } from '@sanity/icons'
+import { icons } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const service = defineType({
   name: 'service',
   title: 'Service',
   type: 'document',
-  icon: TagIcon,
+  icon: icons.tag,
   fields: [
     defineField({
       name: 'title',
