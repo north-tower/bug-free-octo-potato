@@ -84,6 +84,11 @@ const locations = {
     tone: 'caution',
   }),
 
+  contactSubmission: defineLocations({
+    message: 'Form submissions are managed in Studio only',
+    tone: 'caution',
+  }),
+
   service: defineLocations({
     select: {title: 'title'},
     resolve: (doc) => ({

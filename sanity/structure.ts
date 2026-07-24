@@ -65,6 +65,54 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
 
       S.listItem()
+        .title('Contact Submissions')
+        .icon(icons.envelope)
+        .child(
+          S.list()
+            .title('Contact Submissions')
+            .items([
+              S.listItem()
+                .title('New')
+                .icon(icons.envelope)
+                .child(
+                  S.documentTypeList('contactSubmission')
+                    .title('New Submissions')
+                    .filter('_type == "contactSubmission" && status == "new"')
+                    .defaultOrdering([{field: 'submittedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .title('In Progress')
+                .icon(icons.envelope)
+                .child(
+                  S.documentTypeList('contactSubmission')
+                    .title('In Progress')
+                    .filter('_type == "contactSubmission" && status == "in-progress"')
+                    .defaultOrdering([{field: 'submittedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .title('Archived')
+                .icon(icons.envelope)
+                .child(
+                  S.documentTypeList('contactSubmission')
+                    .title('Archived')
+                    .filter('_type == "contactSubmission" && status == "archived"')
+                    .defaultOrdering([{field: 'submittedAt', direction: 'desc'}]),
+                ),
+              S.listItem()
+                .title('All Submissions')
+                .icon(icons.envelope)
+                .schemaType('contactSubmission')
+                .child(
+                  S.documentTypeList('contactSubmission')
+                    .title('All Submissions')
+                    .defaultOrdering([{field: 'submittedAt', direction: 'desc'}]),
+                ),
+            ]),
+        ),
+
+      S.divider(),
+
+      S.listItem()
         .title('Site Settings')
         .icon(icons.cog)
         .child(S.document().schemaType('siteSettings').documentId('singleton-siteSettings')),

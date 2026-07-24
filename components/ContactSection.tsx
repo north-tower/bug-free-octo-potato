@@ -1,7 +1,8 @@
 'use client'
 
+import {submitContactForm} from '@/app/actions/submitContactForm'
 import {ArrowRight, Check, Mail, Phone} from 'lucide-react'
-import {useState} from 'react'
+import {useState, useTransition} from 'react'
 
 export type ContactFormSection = {
   eyebrow?: string | null
@@ -29,6 +30,8 @@ export default function ContactSection({data}: {data?: ContactFormSection | null
   })
   const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [pending, startTransition] = useTransition()
 
   if (!data) return null
 
@@ -44,9 +47,27 @@ export default function ContactSection({data}: {data?: ContactFormSection | null
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setForm({firstName: '', lastName: '', email: '', phone: '', message: ''})
-    setSelectedServices([])
+    setError(null)
+
+    startTransition(async () => {
+      const result = await submitContactForm({
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        services: selectedServices,
+        message: form.message,
+      })
+
+      if (!result.success) {
+        setError(result.error)
+        return
+      }
+
+      setSubmitted(true)
+      setForm({firstName: '', lastName: '', email: '', phone: '', message: ''})
+      setSelectedServices([])
+    })
   }
 
   return (
@@ -193,12 +214,18 @@ export default function ContactSection({data}: {data?: ContactFormSection | null
                     )}
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-bold text-background transition-colors hover:bg-foreground/90"
+                      disabled={pending}
+                      className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-bold text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {data.submitLabel || 'Talk to us now'}
-                      <ArrowRight className="h-4 w-4" />
+                      {pending ? 'Sending...' : data.submitLabel || 'Talk to us now'}
+                      {!pending ? <ArrowRight className="h-4 w-4" /> : null}
                     </button>
                   </div>
+                  {error ? (
+                    <p className="mt-4 text-sm text-red-600" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
                 </form>
               ) : (
                 <div className="py-8 text-center">
