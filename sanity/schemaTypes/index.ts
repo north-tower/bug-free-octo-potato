@@ -3,6 +3,7 @@ import {aboutPage} from './aboutPage'
 import {blogPage} from './blogPage'
 import {caseStudy} from './caseStudy'
 import {contactPage} from './contactPage'
+import {contactSubmission} from './contactSubmission'
 import {homePage} from './homePage'
 import {post} from './post'
 import {project} from './project'
@@ -24,5 +25,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     caseStudy,
     testimonial,
     post,
+    contactSubmission,
   ],
 }
