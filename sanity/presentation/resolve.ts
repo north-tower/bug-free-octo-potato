@@ -87,6 +87,18 @@ const locations = {
     }),
   }),
 
+  legalPage: defineLocations({
+    select: {title: 'title', slug: 'slug.current'},
+    resolve: (doc) => ({
+      locations: [
+        {
+          title: doc?.title || 'Legal Page',
+          href: doc?.slug ? `/legal/${doc.slug}` : '/',
+        },
+      ],
+    }),
+  }),
+
   siteSettings: defineLocations({
     message: 'Navbar and footer appear on every page',
     tone: 'caution',

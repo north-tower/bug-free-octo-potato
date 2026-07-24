@@ -27,5 +27,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     testimonial,
     post,
     contactSubmission,
+    legalPage,
   ],
 }
