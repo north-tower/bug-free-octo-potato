@@ -15,6 +15,19 @@ export const homePage = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      type: 'string',
+      description: 'Overrides the default site title on the homepage',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      rows: 3,
+      validation: (rule) => rule.max(160),
+    }),
+    defineField({
       name: 'hero',
       title: 'Hero',
       type: 'object',

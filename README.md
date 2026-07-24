@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Loom
 
-## Getting Started
+Marketing site for **Websiteloom** — a Nakuru-based web design, SEO, and copywriting agency. Built with **Next.js 16** (App Router) and **Sanity** for content editing, live preview, and Presentation (click-to-edit).
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org) 16 + React 19 + TypeScript
+- [Tailwind CSS](https://tailwindcss.com) 4
+- [Sanity](https://www.sanity.io) v5 + [next-sanity](https://github.com/sanity-io/next-sanity) (embedded Studio, Live Content API, Visual Editing)
+- [Portable Text](https://www.portabletext.org) for rich blog / legal content
+- [pnpm](https://pnpm.io) as the package manager
+
+## Pages & content
+
+| Route | Source in Studio |
+| --- | --- |
+| `/` | Home Page (+ homepage services, projects, case studies, testimonials, blog teaser) |
+| `/about` | About Page |
+| `/services` | Services Page |
+| `/contact` | Contact Page (form submissions → Contact Submissions) |
+| `/blog` | Blog Page |
+| `/blog/[slug]` | Blog Posts |
+| `/legal/[slug]` | Legal Pages |
+| `/studio` | Sanity Studio |
+
+Site chrome (nav, footer, logo, social links) lives in **Site Settings**.
+
+## Getting started
+
+### 1. Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` in the project root:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2026-07-23
 
-## Learn More
+# Studio / Presentation
+NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3000/studio
+SANITY_STUDIO_PREVIEW_ORIGIN=http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+# Viewer token (drafts + Presentation)
+SANITY_API_READ_TOKEN=your_viewer_token
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Editor/write token (contact form creates documents)
+SANITY_API_WRITE_TOKEN=your_write_token
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create tokens:
 
-## Deploy on Vercel
+```bash
+npx sanity login
+npx sanity tokens add "Loom Viewer" --role viewer
+npx sanity tokens add "Loom Form Writer" --role editor
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Deploy schemas (first time / after schema changes)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx sanity schema deploy
+```
+
+### 4. Seed content (optional)
+
+```bash
+pnpm seed:home
+pnpm seed:about
+pnpm seed:services
+pnpm seed:contact
+pnpm seed:settings
+pnpm seed:blog
+pnpm seed:home-blog
+pnpm seed:legal
+```
+
+Seeds use fixed document IDs and `createOrReplace`, so they are safe to re-run.
+
+### 5. Run locally
+
+```bash
+pnpm dev
+```
+
+- Site: [http://localhost:3000](http://localhost:3000)
+- Studio: [http://localhost:3000/studio](http://localhost:3000/studio)
+
+Open **Presentation** in Studio for live preview and click-to-edit overlays.
+
+## Scripts
+
+| Script | Description |
+| --- | --- |
+| `pnpm dev` | Next.js development server |
+| `pnpm build` | Production build |
+| `pnpm start` | Serve production build |
+| `pnpm lint` | ESLint |
+| `pnpm seed:*` | Seed / patch Sanity content (see above) |
+
+## Project structure
+
+```text
+app/
+  (site)/          # Public pages (home, about, services, contact, blog, legal)
+  studio/          # Embedded Sanity Studio
+  api/draft-mode/  # Presentation draft-mode enable route
+  actions/         # Server actions (contact form, disable draft mode)
+components/        # UI sections (hero, navbar, footer, etc.)
+sanity/
+  schemaTypes/     # Content models
+  lib/             # Client, live fetch, queries, image helper
+  presentation/    # Presentation document locations
+scripts/           # Seed scripts (sanity exec --with-user-token)
+```
+
+## CMS notes
+
+- **Singletons:** Home, About, Services, Contact, Blog page, Site Settings
+- **Lists:** Homepage services, projects, case studies, testimonials, blog posts, legal pages
+- **Contact form:** Creates `contactSubmission` documents (New / In Progress / Archived in Studio)
+- **Images:** Served from `cdn.sanity.io` (configured in `next.config.ts`)
+
+## Production checklist
+
+- Set the same env vars on your host (Vercel, etc.)
+- Point `NEXT_PUBLIC_SANITY_STUDIO_URL` and `SANITY_STUDIO_PREVIEW_ORIGIN` at the live domain
+- Add production CORS origin in Sanity Manage (or `npx sanity cors add https://your-domain --credentials`)
+- Review seeded legal copy and replace with final policies before launch
