@@ -29,6 +29,10 @@ const mainDocuments = defineDocuments([
     route: '/blog/:slug',
     filter: `_type == "post" && slug.current == $slug`,
   },
+  {
+    route: '/legal/:slug',
+    filter: `_type == "legalPage" && slug.current == $slug`,
+  },
 ])
 
 const locations = {
