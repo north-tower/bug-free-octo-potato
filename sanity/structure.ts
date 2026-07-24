@@ -50,4 +50,11 @@ export const structure: StructureResolver = (S) =>
         .icon(icons.comment)
         .schemaType('testimonial')
         .child(S.documentTypeList('testimonial').title('Testimonials')),
+
+      S.divider(),
+
+      S.listItem()
+        .title('Site Settings')
+        .icon(icons.cog)
+        .child(S.document().schemaType('siteSettings').documentId('singleton-siteSettings')),
     ])

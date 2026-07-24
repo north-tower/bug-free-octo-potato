@@ -52,6 +52,11 @@ const locations = {
     }),
   }),
 
+  siteSettings: defineLocations({
+    message: 'Navbar and footer appear on every page',
+    tone: 'caution',
+  }),
+
   service: defineLocations({
     select: {title: 'title'},
     resolve: (doc) => ({

@@ -10,7 +10,8 @@
     "seed:home": "sanity exec scripts/seedHomeContent.ts --with-user-token",
     "seed:about": "sanity exec scripts/seedAboutContent.ts --with-user-token",
     "seed:services": "sanity exec scripts/seedServicesContent.ts --with-user-token",
-    "seed:contact": "sanity exec scripts/seedContactContent.ts --with-user-token"
+    "seed:contact": "sanity exec scripts/seedContactContent.ts --with-user-token",
+    "seed:settings": "sanity exec scripts/seedSiteSettings.ts --with-user-token"
   },
   "dependencies": {
     "@sanity/icons": "^5.2.0",

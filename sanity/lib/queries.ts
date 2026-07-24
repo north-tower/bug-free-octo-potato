@@ -94,3 +94,10 @@ export const CONTACT_PAGE_QUERY = defineQuery(`*[_type == "contactPage" && _id =
   formSection,
   visitSection
 }`)
+
+export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{
+  siteName,
+  logo,
+  navbar,
+  footer
+}`)

@@ -6,6 +6,7 @@ import {homePage} from './homePage'
 import {project} from './project'
 import {service} from './service'
 import {servicesPage} from './servicesPage'
+import {siteSettings} from './siteSettings'
 import {testimonial} from './testimonial'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
@@ -14,6 +15,7 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     aboutPage,
     servicesPage,
     contactPage,
+    siteSettings,
     service,
     project,
     caseStudy,
