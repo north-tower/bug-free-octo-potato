@@ -1,3 +1,4 @@
+import {buildPageMetadata} from '@/lib/metadata'
 import {sanityFetch} from '@/sanity/lib/live'
 import {SERVICES_PAGE_QUERY} from '@/sanity/lib/queries'
 import type {Metadata} from 'next'
@@ -34,12 +35,13 @@ const industryIcons = {
 export async function generateMetadata(): Promise<Metadata> {
   const {data} = await sanityFetch({query: SERVICES_PAGE_QUERY, stega: false})
 
-  return {
+  return buildPageMetadata({
     title: 'Services',
     description:
       data?.seoDescription ||
       'Web design, SEO, and copywriting packages for businesses across Kenya — Starter, Business, and E-Commerce.',
-  }
+    path: '/services',
+  })
 }
 
 export default async function ServicesPage() {

@@ -1,3 +1,4 @@
+import {buildPageMetadata} from '@/lib/metadata'
 import {urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {ABOUT_PAGE_QUERY} from '@/sanity/lib/queries'
@@ -21,12 +22,13 @@ const valueIcons = {
 export async function generateMetadata(): Promise<Metadata> {
   const {data} = await sanityFetch({query: ABOUT_PAGE_QUERY, stega: false})
 
-  return {
+  return buildPageMetadata({
     title: 'About',
     description:
       data?.seoDescription ||
       'Websiteloom is a Nakuru-based web design and digital marketing agency helping businesses across Kenya build powerful online presences.',
-  }
+    path: '/about',
+  })
 }
 
 export default async function AboutPage() {

@@ -1,6 +1,8 @@
 import {defineQuery} from 'next-sanity'
 
 export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage" && _id == "singleton-homePage"][0]{
+  seoTitle,
+  seoDescription,
   hero,
   servicesSection,
   processSection,
@@ -111,6 +113,7 @@ export const CONTACT_PAGE_QUERY = defineQuery(`*[_type == "contactPage" && _id =
 export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{
   siteName,
   logo,
+  seo,
   navbar,
   footer
 }`)

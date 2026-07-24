@@ -5,6 +5,7 @@ import HowWeWorkSection from '@/components/HowWeWorkSection'
 import PortfolioSection from '@/components/PortfolioSection'
 import ServicesSection from '@/components/ServicesSection'
 import TestimonialsSection from '@/components/TestimonialsSection'
+import {buildPageMetadata} from '@/lib/metadata'
 import {sanityFetch} from '@/sanity/lib/live'
 import {
   HOME_BLOG_POSTS_QUERY,
@@ -14,6 +15,19 @@ import {
   HOME_SERVICES_QUERY,
   HOME_TESTIMONIALS_QUERY,
 } from '@/sanity/lib/queries'
+import type {Metadata} from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const {data} = await sanityFetch({query: HOME_PAGE_QUERY, stega: false})
+
+  return buildPageMetadata({
+    title: data?.seoTitle || undefined,
+    description:
+      data?.seoDescription ||
+      'Website Loom builds custom e-commerce stores, lead-generating business sites, and organizational websites across Kenya.',
+    path: '/',
+  })
+}
 
 export default async function HomePage() {
   const {data: home} = await sanityFetch({query: HOME_PAGE_QUERY})

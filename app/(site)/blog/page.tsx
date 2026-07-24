@@ -1,3 +1,4 @@
+import {buildPageMetadata} from '@/lib/metadata'
 import {urlFor} from '@/sanity/lib/image'
 import {sanityFetch} from '@/sanity/lib/live'
 import {BLOG_PAGE_QUERY, BLOG_POSTS_QUERY} from '@/sanity/lib/queries'
@@ -24,12 +25,13 @@ function formatDate(value?: string | null) {
 export async function generateMetadata(): Promise<Metadata> {
   const {data} = await sanityFetch({query: BLOG_PAGE_QUERY, stega: false})
 
-  return {
+  return buildPageMetadata({
     title: 'Blog',
     description:
       data?.seoDescription ||
       'Tips on web design, SEO, and growing your business online from the Websiteloom team.',
-  }
+    path: '/blog',
+  })
 }
 
 export default async function BlogPage() {

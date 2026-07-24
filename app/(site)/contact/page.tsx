@@ -1,4 +1,5 @@
 import ContactSection from '@/components/ContactSection'
+import {buildPageMetadata} from '@/lib/metadata'
 import {sanityFetch} from '@/sanity/lib/live'
 import {CONTACT_PAGE_QUERY} from '@/sanity/lib/queries'
 import type {Metadata} from 'next'
@@ -7,12 +8,13 @@ import {ArrowUpRight, Clock3, MapPin, Phone} from 'lucide-react'
 export async function generateMetadata(): Promise<Metadata> {
   const {data} = await sanityFetch({query: CONTACT_PAGE_QUERY, stega: false})
 
-  return {
+  return buildPageMetadata({
     title: 'Contact',
     description:
       data?.seoDescription ||
       'Get in touch with Websiteloom in Nakuru. Free consultation for web design, SEO, and copywriting projects.',
-  }
+    path: '/contact',
+  })
 }
 
 export default async function ContactPage() {
