@@ -33,8 +33,8 @@ export async function generateStaticParams() {
   const slugs = await client.withConfig({useCdn: false}).fetch(BLOG_SLUGS_QUERY)
   return (slugs || [])
     .map((item: {slug?: string | null}) => item.slug)
-    .filter(Boolean)
-    .map((slug: string) => ({slug}))
+    .filter((slug): slug is string => Boolean(slug))
+    .map((slug) => ({slug}))
 }
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
