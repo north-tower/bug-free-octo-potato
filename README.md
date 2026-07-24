@@ -46,6 +46,9 @@ NEXT_PUBLIC_SANITY_API_VERSION=2026-07-23
 NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3000/studio
 SANITY_STUDIO_PREVIEW_ORIGIN=http://localhost:3000
 
+# Public site URL (used for canonical / Open Graph absolute URLs)
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
 # Viewer token (drafts + Presentation)
 SANITY_API_READ_TOKEN=your_viewer_token
 
@@ -101,6 +104,8 @@ Open **Presentation** in Studio for live preview and click-to-edit overlays.
 | `pnpm build` | Production build |
 | `pnpm start` | Serve production build |
 | `pnpm lint` | ESLint |
+| `pnpm typegen` | Extract schema + generate `sanity.types.ts` |
+| `pnpm fix:blog-links` | Rewrite leftover `/#blog` nav/footer links to `/blog` |
 | `pnpm seed:*` | Seed / patch Sanity content (see above) |
 
 ## Project structure

@@ -1,4 +1,5 @@
 import PortableTextRenderer from '@/components/PortableTextRenderer'
+import {buildPageMetadata} from '@/lib/metadata'
 import {urlFor} from '@/sanity/lib/image'
 import {client} from '@/sanity/lib/client'
 import {sanityFetch} from '@/sanity/lib/live'
@@ -48,10 +49,16 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
     return {title: 'Post not found'}
   }
 
-  return {
+  const imageUrl = data.coverImage
+    ? urlFor(data.coverImage).width(1200).height(630).fit('crop').url()
+    : null
+
+  return buildPageMetadata({
     title: data.title || 'Blog Post',
     description: data.excerpt || undefined,
-  }
+    path: `/blog/${slug}`,
+    imageUrl,
+  })
 }
 
 export default async function BlogPostPage({params}: PageProps) {

@@ -35,6 +35,20 @@ async function seed() {
     _type: 'siteSettings',
     title: 'Site Settings',
     siteName: 'Websiteloom',
+    seo: {
+      title: 'Website Loom',
+      titleTemplate: '%s | Website Loom',
+      description:
+        'Website Loom builds custom e-commerce stores, lead-generating business sites, and organizational websites across Kenya.',
+      keywords: [
+        'web design Kenya',
+        'Nakuru web design',
+        'SEO Kenya',
+        'e-commerce websites',
+        'Websiteloom',
+      ],
+      twitterHandle: '',
+    },
     logo: {
       _type: 'image',
       alt: 'Websiteloom',

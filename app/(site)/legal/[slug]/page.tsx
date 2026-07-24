@@ -1,4 +1,5 @@
 import PortableTextRenderer from '@/components/PortableTextRenderer'
+import {buildPageMetadata} from '@/lib/metadata'
 import {client} from '@/sanity/lib/client'
 import {sanityFetch} from '@/sanity/lib/live'
 import {LEGAL_PAGE_QUERY, LEGAL_SLUGS_QUERY} from '@/sanity/lib/queries'
@@ -39,10 +40,11 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
     return {title: 'Page not found'}
   }
 
-  return {
+  return buildPageMetadata({
     title: data.title || 'Legal',
     description: data.seoDescription || undefined,
-  }
+    path: `/legal/${slug}`,
+  })
 }
 
 export default async function LegalPage({params}: PageProps) {

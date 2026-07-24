@@ -14,7 +14,10 @@
     "seed:settings": "sanity exec scripts/seedSiteSettings.ts --with-user-token",
     "seed:blog": "sanity exec scripts/seedBlogContent.ts --with-user-token",
     "seed:home-blog": "sanity exec scripts/seedHomeBlogSection.ts --with-user-token",
-    "seed:legal": "sanity exec scripts/seedLegalPages.ts --with-user-token"
+    "seed:legal": "sanity exec scripts/seedLegalPages.ts --with-user-token",
+    "seed:seo": "sanity exec scripts/seedSeoMetadata.ts --with-user-token",
+    "fix:blog-links": "sanity exec scripts/fixBlogLinks.ts --with-user-token",
+    "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

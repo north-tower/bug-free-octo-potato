@@ -45,6 +45,9 @@ async function seed() {
       _id: 'singleton-homePage',
       _type: 'homePage',
       title: 'Home',
+      seoTitle: 'Website Loom',
+      seoDescription:
+        'Website Loom builds custom e-commerce stores, lead-generating business sites, and organizational websites across Kenya.',
       hero: {
         eyebrow: 'Website Loom • Fast, modern websites for Kenya',
         headline: 'Websites that look premium and convert.',
