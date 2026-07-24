@@ -42,11 +42,10 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2026-07-23
 
-# Studio / Presentation
+# Studio stega links (optional; defaults to /studio on same origin)
 NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3000/studio
-SANITY_STUDIO_PREVIEW_ORIGIN=http://localhost:3000
 
-# Public site URL (used for canonical / Open Graph absolute URLs)
+# Public site URL (canonical / OG + Presentation preview origin when set)
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # Viewer token (drafts + Presentation)
@@ -134,6 +133,7 @@ scripts/           # Seed scripts (sanity exec --with-user-token)
 ## Production checklist
 
 - Set the same env vars on your host (Vercel, etc.)
-- Point `NEXT_PUBLIC_SANITY_STUDIO_URL` and `SANITY_STUDIO_PREVIEW_ORIGIN` at the live domain
+- Set `NEXT_PUBLIC_SITE_URL` to the live URL (e.g. `https://your-app.vercel.app`) — Presentation uses this (or the Studio’s own origin) instead of localhost
+- Optionally set `NEXT_PUBLIC_SANITY_STUDIO_URL` to `https://your-app.vercel.app/studio`
 - Add production CORS origin in Sanity Manage (or `npx sanity cors add https://your-domain --credentials`)
 - Review seeded legal copy and replace with final policies before launch
