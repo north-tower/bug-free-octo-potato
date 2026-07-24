@@ -15,13 +15,18 @@ export const structure: StructureResolver = (S) =>
         .icon(icons.users)
         .child(S.document().schemaType('aboutPage').documentId('singleton-aboutPage')),
 
+      S.listItem()
+        .title('Services Page')
+        .icon(icons.tag)
+        .child(S.document().schemaType('servicesPage').documentId('singleton-servicesPage')),
+
       S.divider(),
 
       S.listItem()
-        .title('Services')
+        .title('Homepage Services')
         .icon(icons.tag)
         .schemaType('service')
-        .child(S.documentTypeList('service').title('Services')),
+        .child(S.documentTypeList('service').title('Homepage Services')),
 
       S.listItem()
         .title('Projects')

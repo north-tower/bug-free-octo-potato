@@ -78,3 +78,13 @@ export const ABOUT_PAGE_QUERY = defineQuery(`*[_type == "aboutPage" && _id == "s
   },
   cta
 }`)
+
+export const SERVICES_PAGE_QUERY = defineQuery(`*[_type == "servicesPage" && _id == "singleton-servicesPage"][0]{
+  seoDescription,
+  hero,
+  offerings,
+  industries,
+  process,
+  packages,
+  cta
+}`)

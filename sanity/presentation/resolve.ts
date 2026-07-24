@@ -13,6 +13,10 @@ const mainDocuments = defineDocuments([
     route: '/about',
     filter: `_id == "singleton-aboutPage"`,
   },
+  {
+    route: '/services',
+    filter: `_id == "singleton-servicesPage"`,
+  },
 ])
 
 const locations = {
@@ -27,6 +31,13 @@ const locations = {
     select: {title: 'title'},
     resolve: (doc) => ({
       locations: [{title: doc?.title || 'About Page', href: '/about'}],
+    }),
+  }),
+
+  servicesPage: defineLocations({
+    select: {title: 'title'},
+    resolve: (doc) => ({
+      locations: [{title: doc?.title || 'Services Page', href: '/services'}],
     }),
   }),
 
