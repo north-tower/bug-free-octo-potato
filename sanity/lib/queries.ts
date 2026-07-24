@@ -51,3 +51,30 @@ export const HOME_TESTIMONIALS_QUERY = defineQuery(`*[_type == "testimonial" && 
   rating,
   verified
 }`)
+
+export const ABOUT_PAGE_QUERY = defineQuery(`*[_type == "aboutPage" && _id == "singleton-aboutPage"][0]{
+  seoDescription,
+  hero,
+  stats,
+  story{
+    eyebrow,
+    title,
+    paragraphs,
+    image
+  },
+  purpose,
+  values,
+  team{
+    eyebrow,
+    title,
+    body,
+    members[]{
+      _key,
+      name,
+      role,
+      tags,
+      image
+    }
+  },
+  cta
+}`)

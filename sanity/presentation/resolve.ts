@@ -9,6 +9,10 @@ const mainDocuments = defineDocuments([
     route: '/',
     filter: `_id == "singleton-homePage"`,
   },
+  {
+    route: '/about',
+    filter: `_id == "singleton-aboutPage"`,
+  },
 ])
 
 const locations = {
@@ -16,6 +20,13 @@ const locations = {
     select: {title: 'title'},
     resolve: (doc) => ({
       locations: [{title: doc?.title || 'Home Page', href: '/'}],
+    }),
+  }),
+
+  aboutPage: defineLocations({
+    select: {title: 'title'},
+    resolve: (doc) => ({
+      locations: [{title: doc?.title || 'About Page', href: '/about'}],
     }),
   }),
 

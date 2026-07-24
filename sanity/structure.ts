@@ -1,5 +1,5 @@
-import { icons } from '@sanity/icons'
-import type { StructureResolver } from 'sanity/structure'
+import {icons} from '@sanity/icons'
+import type {StructureResolver} from 'sanity/structure'
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -9,6 +9,11 @@ export const structure: StructureResolver = (S) =>
         .title('Home Page')
         .icon(icons.home)
         .child(S.document().schemaType('homePage').documentId('singleton-homePage')),
+
+      S.listItem()
+        .title('About Page')
+        .icon(icons.users)
+        .child(S.document().schemaType('aboutPage').documentId('singleton-aboutPage')),
 
       S.divider(),
 
