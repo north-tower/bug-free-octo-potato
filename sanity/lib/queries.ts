@@ -147,3 +147,16 @@ export const BLOG_POST_QUERY = defineQuery(`*[_type == "post" && slug.current ==
 export const BLOG_SLUGS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)]{
   "slug": slug.current
 }`)
+
+export const LEGAL_PAGE_QUERY = defineQuery(`*[_type == "legalPage" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  seoDescription,
+  lastUpdated,
+  body
+}`)
+
+export const LEGAL_SLUGS_QUERY = defineQuery(`*[_type == "legalPage" && defined(slug.current)]{
+  "slug": slug.current
+}`)

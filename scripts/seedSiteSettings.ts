@@ -96,11 +96,11 @@ async function seed() {
       ],
       copyright: '© 2026 Websiteloom. All rights reserved.',
       legalLinks: [
-        {_key: key('lg', 0), label: 'Privacy Policy', href: '#'},
-        {_key: key('lg', 1), label: 'Terms & Conditions', href: '#'},
-        {_key: key('lg', 2), label: 'Refund Policy', href: '#'},
-        {_key: key('lg', 3), label: 'GDPR Compliance', href: '#'},
-        {_key: key('lg', 4), label: 'Affiliates Disclosure', href: '#'},
+        {_key: key('lg', 0), label: 'Privacy Policy', href: '/legal/privacy-policy'},
+        {_key: key('lg', 1), label: 'Terms & Conditions', href: '/legal/terms-and-conditions'},
+        {_key: key('lg', 2), label: 'Refund Policy', href: '/legal/refund-policy'},
+        {_key: key('lg', 3), label: 'GDPR Compliance', href: '/legal/gdpr-compliance'},
+        {_key: key('lg', 4), label: 'Affiliates Disclosure', href: '/legal/affiliates-disclosure'},
       ],
     },
   })

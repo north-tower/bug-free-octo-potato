@@ -13,7 +13,8 @@
     "seed:contact": "sanity exec scripts/seedContactContent.ts --with-user-token",
     "seed:settings": "sanity exec scripts/seedSiteSettings.ts --with-user-token",
     "seed:blog": "sanity exec scripts/seedBlogContent.ts --with-user-token",
-    "seed:home-blog": "sanity exec scripts/seedHomeBlogSection.ts --with-user-token"
+    "seed:home-blog": "sanity exec scripts/seedHomeBlogSection.ts --with-user-token",
+    "seed:legal": "sanity exec scripts/seedLegalPages.ts --with-user-token"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

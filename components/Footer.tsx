@@ -205,17 +205,21 @@ export default function Footer({data}: {data?: FooterData | null}) {
           </p>
           {legalLinks.length ? (
             <div className="flex flex-wrap items-center">
-              {legalLinks.map((link, index) => (
-                <a
-                  key={link._key || link.label}
-                  href={link.href!}
-                  className={`px-2 text-[11px] text-muted-foreground transition-colors hover:text-foreground ${
-                    index < legalLinks.length - 1 ? 'border-r border-border' : ''
-                  } ${index === 0 ? 'pl-0' : ''}`}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {legalLinks.map((link, index) => {
+                const className = `px-2 text-[11px] text-muted-foreground transition-colors hover:text-foreground ${
+                  index < legalLinks.length - 1 ? 'border-r border-border' : ''
+                } ${index === 0 ? 'pl-0' : ''}`
+
+                return link.href?.startsWith('/') ? (
+                  <Link key={link._key || link.label} href={link.href} className={className}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a key={link._key || link.label} href={link.href!} className={className}>
+                    {link.label}
+                  </a>
+                )
+              })}
             </div>
           ) : null}
         </div>
