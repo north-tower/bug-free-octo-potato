@@ -15,6 +15,147 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type LegalPage = {
+  _id: string;
+  _type: "legalPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  seoDescription?: string;
+  lastUpdated?: string;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type ContactSubmission = {
+  _id: string;
+  _type: "contactSubmission";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  services?: Array<string>;
+  message?: string;
+  submittedAt?: string;
+  status?: "new" | "in-progress" | "archived";
+  notes?: string;
+};
+
+export type Post = {
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  excerpt?: string;
+  coverImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  category?: "web-design" | "seo" | "business" | "tips";
+  publishedAt?: string;
+  readTime?: number;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
+  featured?: boolean;
+};
+
 export type Testimonial = {
   _id: string;
   _type: "testimonial";
@@ -58,13 +199,6 @@ export type CaseStudy = {
   order?: number;
 };
 
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
-
 export type Project = {
   _id: string;
   _type: "project";
@@ -86,22 +220,6 @@ export type Project = {
   order?: number;
 };
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
 export type Service = {
   _id: string;
   _type: "service";
@@ -121,6 +239,301 @@ export type Service = {
   order?: number;
 };
 
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  siteName?: string;
+  seo?: {
+    title?: string;
+    titleTemplate?: string;
+    description?: string;
+    keywords?: Array<string>;
+    ogImage?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+    twitterHandle?: string;
+  };
+  logo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  navbar?: {
+    links?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+    phone?: string;
+    phoneHref?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  footer?: {
+    tagline?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+    quickLinksTitle?: string;
+    quickLinks?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+    findUsTitle?: string;
+    addressLines?: Array<string>;
+    mapLabel?: string;
+    mapHref?: string;
+    phone?: string;
+    phoneHref?: string;
+    hoursTitle?: string;
+    walkInLabel?: string;
+    walkInHours?: string;
+    onlineLabel?: string;
+    onlineBadge?: string;
+    careersTitle?: string;
+    careersBody?: string;
+    careersCtaLabel?: string;
+    careersCtaHref?: string;
+    socialTitle?: string;
+    socialLinks?: Array<{
+      label?: string;
+      href?: string;
+      color?: string;
+      _key: string;
+    }>;
+    copyright?: string;
+    legalLinks?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+  };
+};
+
+export type BlogPage = {
+  _id: string;
+  _type: "blogPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  seoDescription?: string;
+  hero?: {
+    eyebrow?: string;
+    headline?: string;
+    body?: string;
+  };
+};
+
+export type ContactPage = {
+  _id: string;
+  _type: "contactPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  seoDescription?: string;
+  formSection?: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    body?: string;
+    trustBadges?: Array<string>;
+    serviceOptions?: Array<string>;
+    privacyNote?: string;
+    submitLabel?: string;
+    successTitle?: string;
+    successBody?: string;
+    email?: string;
+    phone?: string;
+    phoneHref?: string;
+  };
+  visitSection?: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    body?: string;
+    locationLabel?: string;
+    location?: string;
+    phoneLabel?: string;
+    phone?: string;
+    phoneHref?: string;
+    hoursLabel?: string;
+    hours?: string;
+    mapEmbedUrl?: string;
+    mapLinkUrl?: string;
+    mapLinkLabel?: string;
+  };
+};
+
+export type ServicesPage = {
+  _id: string;
+  _type: "servicesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  seoDescription?: string;
+  hero?: {
+    headline?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  offerings?: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      icon?: "globe" | "search" | "pen";
+      title?: string;
+      description?: string;
+      features?: Array<string>;
+      _key: string;
+    }>;
+  };
+  industries?: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      icon?:
+        | "shopping-cart"
+        | "building"
+        | "stethoscope"
+        | "graduation"
+        | "landmark"
+        | "bar-chart";
+      name?: string;
+      description?: string;
+      _key: string;
+    }>;
+  };
+  process?: {
+    title?: string;
+    subtitle?: string;
+    steps?: Array<{
+      step?: string;
+      title?: string;
+      description?: string;
+      _key: string;
+    }>;
+  };
+  packages?: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      name?: string;
+      price?: string;
+      description?: string;
+      features?: Array<string>;
+      highlighted?: boolean;
+      ctaLabel?: string;
+      ctaHref?: string;
+      _key: string;
+    }>;
+  };
+  cta?: {
+    title?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+};
+
+export type AboutPage = {
+  _id: string;
+  _type: "aboutPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  seoDescription?: string;
+  hero?: {
+    eyebrow?: string;
+    headline?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  stats?: Array<{
+    number?: string;
+    label?: string;
+    sublabel?: string;
+    _key: string;
+  }>;
+  story?: {
+    eyebrow?: string;
+    title?: string;
+    paragraphs?: Array<string>;
+    image?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+  };
+  purpose?: {
+    eyebrow?: string;
+    title?: string;
+    items?: Array<{
+      icon?: "target" | "eye";
+      label?: string;
+      title?: string;
+      body?: string;
+      _key: string;
+    }>;
+  };
+  values?: {
+    eyebrow?: string;
+    title?: string;
+    items?: Array<{
+      icon?: "award" | "zap" | "heart" | "users";
+      title?: string;
+      description?: string;
+      _key: string;
+    }>;
+  };
+  team?: {
+    eyebrow?: string;
+    title?: string;
+    body?: string;
+    members?: Array<{
+      name?: string;
+      role?: string;
+      image?: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      };
+      tags?: Array<string>;
+      _key: string;
+    }>;
+  };
+  cta?: {
+    eyebrow?: string;
+    title?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+};
+
 export type HomePage = {
   _id: string;
   _type: "homePage";
@@ -128,6 +541,8 @@ export type HomePage = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   hero?: {
     eyebrow?: string;
     headline?: string;
@@ -194,6 +609,15 @@ export type HomePage = {
     ratingSummary?: string;
     recommendLabel?: string;
     sourceNote?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  blogSection?: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+    postCount?: number;
     ctaLabel?: string;
     ctaHref?: string;
   };
@@ -296,20 +720,23 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type AllSanitySchemaTypes =
-  | Testimonial
-  | CaseStudy
   | SanityImageAssetReference
-  | Project
+  | LegalPage
   | SanityImageCrop
   | SanityImageHotspot
+  | Slug
+  | ContactSubmission
+  | Post
+  | Testimonial
+  | CaseStudy
+  | Project
   | Service
+  | SiteSettings
+  | BlogPage
+  | ContactPage
+  | ServicesPage
+  | AboutPage
   | HomePage
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -318,5 +745,616 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | SanityAssetSourceData
   | SanityImageAsset
-  | Geopoint
-  | Slug;
+  | Geopoint;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_PAGE_QUERY
+// Query: *[_type == "homePage" && _id == "singleton-homePage"][0]{  seoTitle,  seoDescription,  hero,  servicesSection,  processSection,  portfolioSection,  caseStudiesSection,  testimonialsSection,  blogSection}
+export type HOME_PAGE_QUERY_RESULT = {
+  seoTitle: string | null;
+  seoDescription: string | null;
+  hero: {
+    eyebrow?: string;
+    headline?: string;
+    headlineAccent?: string;
+    body?: string;
+    primaryCtaLabel?: string;
+    primaryCtaHref?: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaHref?: string;
+    highlights?: Array<string>;
+    stats?: Array<{
+      value?: string;
+      label?: string;
+      _key: string;
+    }>;
+    statsDisclaimer?: string;
+    previewCaption?: string;
+  } | null;
+  servicesSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+  } | null;
+  processSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+    badge?: string;
+    durationLabel?: string;
+    steps?: Array<{
+      number?: string;
+      label?: string;
+      _key: string;
+    }>;
+    stats?: Array<{
+      value?: string;
+      label?: string;
+      _key: string;
+    }>;
+  } | null;
+  portfolioSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+    totalCountLabel?: number;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+  caseStudiesSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+  } | null;
+  testimonialsSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+    ratingValue?: string;
+    ratingSummary?: string;
+    recommendLabel?: string;
+    sourceNote?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+  blogSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    description?: string;
+    postCount?: number;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_SERVICES_QUERY
+// Query: *[_type == "service"] | order(order asc){  _id,  title,  number,  tag,  icon,  description,  items,  stat,  statLabel,  ctaLabel,  ctaHref}
+export type HOME_SERVICES_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  number: string | null;
+  tag: string | null;
+  icon: "globe" | "pen" | "search" | null;
+  description: string | null;
+  items: Array<string> | null;
+  stat: string | null;
+  statLabel: string | null;
+  ctaLabel: string | null;
+  ctaHref: string | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_PROJECTS_QUERY
+// Query: *[_type == "project"] | order(order asc){  _id,  title,  tag,  category,  featured,  image}
+export type HOME_PROJECTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  tag: string | null;
+  category: "Corporate" | "E-commerce" | "Hospitality" | "Nonprofit" | null;
+  featured: boolean | null;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_CASE_STUDIES_QUERY
+// Query: *[_type == "caseStudy" && featured == true] | order(order asc)[0...1]{  _id,  title,  industry,  metrics,  phases,  resultPills}
+export type HOME_CASE_STUDIES_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  industry: string | null;
+  metrics: Array<{
+    value?: string;
+    label?: string;
+    tone?: "primary" | "success";
+    _key: string;
+  }> | null;
+  phases: Array<{
+    number?: string;
+    label?: string;
+    body?: string;
+    tone?: "problem" | "results" | "solution";
+    _key: string;
+  }> | null;
+  resultPills: Array<string> | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_TESTIMONIALS_QUERY
+// Query: *[_type == "testimonial" && featured == true] | order(order asc){  _id,  name,  role,  quote,  initials,  avatarTone,  rating,  verified}
+export type HOME_TESTIMONIALS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  role: string | null;
+  quote: string | null;
+  initials: string | null;
+  avatarTone: "blue" | "green" | null;
+  rating: number | null;
+  verified: boolean | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: HOME_BLOG_POSTS_QUERY
+// Query: *[_type == "post"] | order(featured desc, publishedAt desc)[0...$limit]{  _id,  title,  "slug": slug.current,  excerpt,  category,  publishedAt,  readTime,  featured,  coverImage}
+export type HOME_BLOG_POSTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  excerpt: string | null;
+  category: "business" | "seo" | "tips" | "web-design" | null;
+  publishedAt: string | null;
+  readTime: number | null;
+  featured: boolean | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: ABOUT_PAGE_QUERY
+// Query: *[_type == "aboutPage" && _id == "singleton-aboutPage"][0]{  seoDescription,  hero,  stats,  story{    eyebrow,    title,    paragraphs,    image  },  purpose,  values,  team{    eyebrow,    title,    body,    members[]{      _key,      name,      role,      tags,      image    }  },  cta}
+export type ABOUT_PAGE_QUERY_RESULT = {
+  seoDescription: string | null;
+  hero: {
+    eyebrow?: string;
+    headline?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+  stats: Array<{
+    number?: string;
+    label?: string;
+    sublabel?: string;
+    _key: string;
+  }> | null;
+  story: {
+    eyebrow: string | null;
+    title: string | null;
+    paragraphs: Array<string> | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    } | null;
+  } | null;
+  purpose: {
+    eyebrow?: string;
+    title?: string;
+    items?: Array<{
+      icon?: "eye" | "target";
+      label?: string;
+      title?: string;
+      body?: string;
+      _key: string;
+    }>;
+  } | null;
+  values: {
+    eyebrow?: string;
+    title?: string;
+    items?: Array<{
+      icon?: "award" | "heart" | "users" | "zap";
+      title?: string;
+      description?: string;
+      _key: string;
+    }>;
+  } | null;
+  team: {
+    eyebrow: string | null;
+    title: string | null;
+    body: string | null;
+    members: Array<{
+      _key: string;
+      name: string | null;
+      role: string | null;
+      tags: Array<string> | null;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      } | null;
+    }> | null;
+  } | null;
+  cta: {
+    eyebrow?: string;
+    title?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: SERVICES_PAGE_QUERY
+// Query: *[_type == "servicesPage" && _id == "singleton-servicesPage"][0]{  seoDescription,  hero,  offerings,  industries,  process,  packages,  cta}
+export type SERVICES_PAGE_QUERY_RESULT = {
+  seoDescription: string | null;
+  hero: {
+    headline?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+  offerings: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      icon?: "globe" | "pen" | "search";
+      title?: string;
+      description?: string;
+      features?: Array<string>;
+      _key: string;
+    }>;
+  } | null;
+  industries: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      icon?:
+        | "bar-chart"
+        | "building"
+        | "graduation"
+        | "landmark"
+        | "shopping-cart"
+        | "stethoscope";
+      name?: string;
+      description?: string;
+      _key: string;
+    }>;
+  } | null;
+  process: {
+    title?: string;
+    subtitle?: string;
+    steps?: Array<{
+      step?: string;
+      title?: string;
+      description?: string;
+      _key: string;
+    }>;
+  } | null;
+  packages: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      name?: string;
+      price?: string;
+      description?: string;
+      features?: Array<string>;
+      highlighted?: boolean;
+      ctaLabel?: string;
+      ctaHref?: string;
+      _key: string;
+    }>;
+  } | null;
+  cta: {
+    title?: string;
+    body?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: CONTACT_PAGE_QUERY
+// Query: *[_type == "contactPage" && _id == "singleton-contactPage"][0]{  seoDescription,  formSection,  visitSection}
+export type CONTACT_PAGE_QUERY_RESULT = {
+  seoDescription: string | null;
+  formSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    body?: string;
+    trustBadges?: Array<string>;
+    serviceOptions?: Array<string>;
+    privacyNote?: string;
+    submitLabel?: string;
+    successTitle?: string;
+    successBody?: string;
+    email?: string;
+    phone?: string;
+    phoneHref?: string;
+  } | null;
+  visitSection: {
+    eyebrow?: string;
+    title?: string;
+    titleAccent?: string;
+    body?: string;
+    locationLabel?: string;
+    location?: string;
+    phoneLabel?: string;
+    phone?: string;
+    phoneHref?: string;
+    hoursLabel?: string;
+    hours?: string;
+    mapEmbedUrl?: string;
+    mapLinkUrl?: string;
+    mapLinkLabel?: string;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{  siteName,  logo,  seo,  navbar,  footer}
+export type SITE_SETTINGS_QUERY_RESULT = {
+  siteName: string | null;
+  logo: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  seo: {
+    title?: string;
+    titleTemplate?: string;
+    description?: string;
+    keywords?: Array<string>;
+    ogImage?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+    twitterHandle?: string;
+  } | null;
+  navbar: {
+    links?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+    phone?: string;
+    phoneHref?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  } | null;
+  footer: {
+    tagline?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+    quickLinksTitle?: string;
+    quickLinks?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+    findUsTitle?: string;
+    addressLines?: Array<string>;
+    mapLabel?: string;
+    mapHref?: string;
+    phone?: string;
+    phoneHref?: string;
+    hoursTitle?: string;
+    walkInLabel?: string;
+    walkInHours?: string;
+    onlineLabel?: string;
+    onlineBadge?: string;
+    careersTitle?: string;
+    careersBody?: string;
+    careersCtaLabel?: string;
+    careersCtaHref?: string;
+    socialTitle?: string;
+    socialLinks?: Array<{
+      label?: string;
+      href?: string;
+      color?: string;
+      _key: string;
+    }>;
+    copyright?: string;
+    legalLinks?: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }>;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: BLOG_PAGE_QUERY
+// Query: *[_type == "blogPage" && _id == "singleton-blogPage"][0]{  seoDescription,  hero}
+export type BLOG_PAGE_QUERY_RESULT = {
+  seoDescription: string | null;
+  hero: {
+    eyebrow?: string;
+    headline?: string;
+    body?: string;
+  } | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: BLOG_POSTS_QUERY
+// Query: *[_type == "post"] | order(publishedAt desc){  _id,  title,  "slug": slug.current,  excerpt,  category,  publishedAt,  readTime,  featured,  coverImage}
+export type BLOG_POSTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  excerpt: string | null;
+  category: "business" | "seo" | "tips" | "web-design" | null;
+  publishedAt: string | null;
+  readTime: number | null;
+  featured: boolean | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: BLOG_POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  excerpt,  category,  publishedAt,  readTime,  coverImage,  body}
+export type BLOG_POST_QUERY_RESULT = {
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  excerpt: string | null;
+  category: "business" | "seo" | "tips" | "web-design" | null;
+  publishedAt: string | null;
+  readTime: number | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: BLOG_SLUGS_QUERY
+// Query: *[_type == "post" && defined(slug.current)]{  "slug": slug.current}
+export type BLOG_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: LEGAL_PAGE_QUERY
+// Query: *[_type == "legalPage" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  seoDescription,  lastUpdated,  body}
+export type LEGAL_PAGE_QUERY_RESULT = {
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  seoDescription: string | null;
+  lastUpdated: string | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
+} | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: LEGAL_SLUGS_QUERY
+// Query: *[_type == "legalPage" && defined(slug.current)]{  "slug": slug.current}
+export type LEGAL_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '*[_type == "homePage" && _id == "singleton-homePage"][0]{\n  seoTitle,\n  seoDescription,\n  hero,\n  servicesSection,\n  processSection,\n  portfolioSection,\n  caseStudiesSection,\n  testimonialsSection,\n  blogSection\n}': HOME_PAGE_QUERY_RESULT;
+    '*[_type == "service"] | order(order asc){\n  _id,\n  title,\n  number,\n  tag,\n  icon,\n  description,\n  items,\n  stat,\n  statLabel,\n  ctaLabel,\n  ctaHref\n}': HOME_SERVICES_QUERY_RESULT;
+    '*[_type == "project"] | order(order asc){\n  _id,\n  title,\n  tag,\n  category,\n  featured,\n  image\n}': HOME_PROJECTS_QUERY_RESULT;
+    '*[_type == "caseStudy" && featured == true] | order(order asc)[0...1]{\n  _id,\n  title,\n  industry,\n  metrics,\n  phases,\n  resultPills\n}': HOME_CASE_STUDIES_QUERY_RESULT;
+    '*[_type == "testimonial" && featured == true] | order(order asc){\n  _id,\n  name,\n  role,\n  quote,\n  initials,\n  avatarTone,\n  rating,\n  verified\n}': HOME_TESTIMONIALS_QUERY_RESULT;
+    '*[_type == "post"] | order(featured desc, publishedAt desc)[0...$limit]{\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  category,\n  publishedAt,\n  readTime,\n  featured,\n  coverImage\n}': HOME_BLOG_POSTS_QUERY_RESULT;
+    '*[_type == "aboutPage" && _id == "singleton-aboutPage"][0]{\n  seoDescription,\n  hero,\n  stats,\n  story{\n    eyebrow,\n    title,\n    paragraphs,\n    image\n  },\n  purpose,\n  values,\n  team{\n    eyebrow,\n    title,\n    body,\n    members[]{\n      _key,\n      name,\n      role,\n      tags,\n      image\n    }\n  },\n  cta\n}': ABOUT_PAGE_QUERY_RESULT;
+    '*[_type == "servicesPage" && _id == "singleton-servicesPage"][0]{\n  seoDescription,\n  hero,\n  offerings,\n  industries,\n  process,\n  packages,\n  cta\n}': SERVICES_PAGE_QUERY_RESULT;
+    '*[_type == "contactPage" && _id == "singleton-contactPage"][0]{\n  seoDescription,\n  formSection,\n  visitSection\n}': CONTACT_PAGE_QUERY_RESULT;
+    '*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{\n  siteName,\n  logo,\n  seo,\n  navbar,\n  footer\n}': SITE_SETTINGS_QUERY_RESULT;
+    '*[_type == "blogPage" && _id == "singleton-blogPage"][0]{\n  seoDescription,\n  hero\n}': BLOG_PAGE_QUERY_RESULT;
+    '*[_type == "post"] | order(publishedAt desc){\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  category,\n  publishedAt,\n  readTime,\n  featured,\n  coverImage\n}': BLOG_POSTS_QUERY_RESULT;
+    '*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  category,\n  publishedAt,\n  readTime,\n  coverImage,\n  body\n}': BLOG_POST_QUERY_RESULT;
+    '*[_type == "post" && defined(slug.current)]{\n  "slug": slug.current\n}': BLOG_SLUGS_QUERY_RESULT;
+    '*[_type == "legalPage" && slug.current == $slug][0]{\n  _id,\n  title,\n  "slug": slug.current,\n  seoDescription,\n  lastUpdated,\n  body\n}': LEGAL_PAGE_QUERY_RESULT;
+    '*[_type == "legalPage" && defined(slug.current)]{\n  "slug": slug.current\n}': LEGAL_SLUGS_QUERY_RESULT;
+  }
+}
