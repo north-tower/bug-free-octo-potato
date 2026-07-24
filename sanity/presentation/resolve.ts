@@ -75,6 +75,10 @@ const locations = {
           title: doc?.title || 'Blog Post',
           href: doc?.slug ? `/blog/${doc.slug}` : '/blog',
         },
+        {
+          title: 'Home blog teaser',
+          href: '/#blog',
+        },
       ],
     }),
   }),

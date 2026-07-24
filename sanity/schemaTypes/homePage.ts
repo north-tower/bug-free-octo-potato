@@ -214,6 +214,27 @@ export const homePage = defineType({
         defineField({ name: 'ctaHref', type: 'string' }),
       ],
     }),
+    defineField({
+      name: 'blogSection',
+      title: 'Blog Teaser Section',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', type: 'string'}),
+        defineField({name: 'title', type: 'string'}),
+        defineField({name: 'titleAccent', type: 'string'}),
+        defineField({name: 'description', type: 'text', rows: 3}),
+        defineField({
+          name: 'postCount',
+          title: 'Number of Posts',
+          type: 'number',
+          description: 'How many posts to show (featured first, then newest)',
+          initialValue: 3,
+          validation: (rule) => rule.min(1).max(6),
+        }),
+        defineField({name: 'ctaLabel', type: 'string', initialValue: 'View all articles'}),
+        defineField({name: 'ctaHref', type: 'string', initialValue: '/blog'}),
+      ],
+    }),
   ],
   preview: {
     prepare() {

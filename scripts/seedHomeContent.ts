@@ -123,6 +123,16 @@ async function seed() {
         ctaLabel: 'Work with us',
         ctaHref: '/contact',
       },
+      blogSection: {
+        eyebrow: 'From the blog',
+        title: 'Ideas that help your',
+        titleAccent: 'website work harder',
+        description:
+          'Practical guides on design, SEO, and digital growth for Kenyan businesses.',
+        postCount: 3,
+        ctaLabel: 'View all articles',
+        ctaHref: '/blog',
+      },
     },
     {
       _id: 'seed-service-web-design',

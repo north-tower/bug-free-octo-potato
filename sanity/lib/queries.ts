@@ -6,7 +6,8 @@ export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage" && _id == "sin
   processSection,
   portfolioSection,
   caseStudiesSection,
-  testimonialsSection
+  testimonialsSection,
+  blogSection
 }`)
 
 export const HOME_SERVICES_QUERY = defineQuery(`*[_type == "service"] | order(order asc){
@@ -50,6 +51,18 @@ export const HOME_TESTIMONIALS_QUERY = defineQuery(`*[_type == "testimonial" && 
   avatarTone,
   rating,
   verified
+}`)
+
+export const HOME_BLOG_POSTS_QUERY = defineQuery(`*[_type == "post"] | order(featured desc, publishedAt desc)[0...$limit]{
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  category,
+  publishedAt,
+  readTime,
+  featured,
+  coverImage
 }`)
 
 export const ABOUT_PAGE_QUERY = defineQuery(`*[_type == "aboutPage" && _id == "singleton-aboutPage"][0]{
