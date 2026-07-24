@@ -30,7 +30,7 @@ export default defineConfig({
          * location so Vercel (and any host) works without a hardcoded localhost.
          * Override with NEXT_PUBLIC_SITE_URL when the preview app differs.
          */
-        initial: async ({origin}) => {
+        initial: async ({origin}: {origin: string}) => {
           const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
           const isLocalStudio =
             origin.includes('localhost') || origin.includes('127.0.0.1')
