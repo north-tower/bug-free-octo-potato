@@ -88,3 +88,9 @@ export const SERVICES_PAGE_QUERY = defineQuery(`*[_type == "servicesPage" && _id
   packages,
   cta
 }`)
+
+export const CONTACT_PAGE_QUERY = defineQuery(`*[_type == "contactPage" && _id == "singleton-contactPage"][0]{
+  seoDescription,
+  formSection,
+  visitSection
+}`)

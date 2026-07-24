@@ -20,6 +20,11 @@ export const structure: StructureResolver = (S) =>
         .icon(icons.tag)
         .child(S.document().schemaType('servicesPage').documentId('singleton-servicesPage')),
 
+      S.listItem()
+        .title('Contact Page')
+        .icon(icons.envelope)
+        .child(S.document().schemaType('contactPage').documentId('singleton-contactPage')),
+
       S.divider(),
 
       S.listItem()
