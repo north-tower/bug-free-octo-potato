@@ -21,6 +21,14 @@ const mainDocuments = defineDocuments([
     route: '/contact',
     filter: `_id == "singleton-contactPage"`,
   },
+  {
+    route: '/blog',
+    filter: `_id == "singleton-blogPage"`,
+  },
+  {
+    route: '/blog/:slug',
+    filter: `_type == "post" && slug.current == $slug`,
+  },
 ])
 
 const locations = {
@@ -49,6 +57,25 @@ const locations = {
     select: {title: 'title'},
     resolve: (doc) => ({
       locations: [{title: doc?.title || 'Contact Page', href: '/contact'}],
+    }),
+  }),
+
+  blogPage: defineLocations({
+    select: {title: 'title'},
+    resolve: (doc) => ({
+      locations: [{title: doc?.title || 'Blog Page', href: '/blog'}],
+    }),
+  }),
+
+  post: defineLocations({
+    select: {title: 'title', slug: 'slug.current'},
+    resolve: (doc) => ({
+      locations: [
+        {
+          title: doc?.title || 'Blog Post',
+          href: doc?.slug ? `/blog/${doc.slug}` : '/blog',
+        },
+      ],
     }),
   }),
 

@@ -101,3 +101,36 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings" && _id
   navbar,
   footer
 }`)
+
+export const BLOG_PAGE_QUERY = defineQuery(`*[_type == "blogPage" && _id == "singleton-blogPage"][0]{
+  seoDescription,
+  hero
+}`)
+
+export const BLOG_POSTS_QUERY = defineQuery(`*[_type == "post"] | order(publishedAt desc){
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  category,
+  publishedAt,
+  readTime,
+  featured,
+  coverImage
+}`)
+
+export const BLOG_POST_QUERY = defineQuery(`*[_type == "post" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  category,
+  publishedAt,
+  readTime,
+  coverImage,
+  body
+}`)
+
+export const BLOG_SLUGS_QUERY = defineQuery(`*[_type == "post" && defined(slug.current)]{
+  "slug": slug.current
+}`)

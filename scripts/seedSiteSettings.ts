@@ -46,7 +46,7 @@ async function seed() {
         {_key: key('nl', 1), label: 'About Websiteloom', href: '/about'},
         {_key: key('nl', 2), label: 'Our Services', href: '/services'},
         {_key: key('nl', 3), label: 'Contact', href: '/contact'},
-        {_key: key('nl', 4), label: 'Blog', href: '/#blog'},
+        {_key: key('nl', 4), label: 'Blog', href: '/blog'},
       ],
       phone: '+254 707 803 637',
       phoneHref: 'tel:+254707803637',
@@ -63,7 +63,7 @@ async function seed() {
         {_key: key('ql', 0), label: 'Home', href: '/'},
         {_key: key('ql', 1), label: 'About Websiteloom', href: '/about'},
         {_key: key('ql', 2), label: 'Contact us', href: '/contact'},
-        {_key: key('ql', 3), label: 'Blog', href: '/#blog'},
+        {_key: key('ql', 3), label: 'Blog', href: '/blog'},
       ],
       findUsTitle: 'Find us',
       addressLines: [

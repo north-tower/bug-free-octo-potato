@@ -25,7 +25,18 @@ export const structure: StructureResolver = (S) =>
         .icon(icons.envelope)
         .child(S.document().schemaType('contactPage').documentId('singleton-contactPage')),
 
+      S.listItem()
+        .title('Blog Page')
+        .icon(icons.book)
+        .child(S.document().schemaType('blogPage').documentId('singleton-blogPage')),
+
       S.divider(),
+
+      S.listItem()
+        .title('Blog Posts')
+        .icon(icons.compose)
+        .schemaType('post')
+        .child(S.documentTypeList('post').title('Blog Posts')),
 
       S.listItem()
         .title('Homepage Services')

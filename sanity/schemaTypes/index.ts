@@ -1,8 +1,10 @@
 import type {SchemaTypeDefinition} from 'sanity'
 import {aboutPage} from './aboutPage'
+import {blogPage} from './blogPage'
 import {caseStudy} from './caseStudy'
 import {contactPage} from './contactPage'
 import {homePage} from './homePage'
+import {post} from './post'
 import {project} from './project'
 import {service} from './service'
 import {servicesPage} from './servicesPage'
@@ -15,10 +17,12 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     aboutPage,
     servicesPage,
     contactPage,
+    blogPage,
     siteSettings,
     service,
     project,
     caseStudy,
     testimonial,
+    post,
   ],
 }
